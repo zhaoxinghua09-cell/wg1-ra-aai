@@ -60,7 +60,13 @@ identifier of the *instance*, and the statement of *authority* under which the
 instance acted. Regimes in other regulated domains separate a type-level
 identifier from an instance- or production-level identifier for exactly this
 reason, and the separation is what allows a consumer to cache the first and
-must re-check the second.
+must re-check the second. The semantics of the third object are fixed
+elsewhere: the charter of Theme #5 (FG-TIDA/themes#5), carried as PR #15
+(FG-TIDA/themes#15), names *standing of authority* in its Scope section as
+one property with two determinations, at origination and at act time. The
+record-carriage requirements are fixed in that charter's scope element 2,
+and the composition and revocation semantics in scope element 5; the
+chapter claims nothing for the third object beyond what that charter fixes.
 
 A **conformance verdict** is a behavioural form of the instance claim: the
 result of evaluating one specific action against the authored policy set. It
@@ -181,9 +187,13 @@ its delegated authority, its reachable tools — changes during operation.
 The trigger set can be expressed as *events*, each producing a fresh,
 bound attestation:
 
-- **At grant** — when authority is first conferred on the agent.
+- **At grant** — when authority is first conferred on the agent, the
+  consuming side of Theme #5's two determinations: the attestation
+  carries the determination the record carries, and makes none itself.
 - **At (re)delegation** — when the agent hands a sub-task, and its authority,
-  to another agent.
+  to another agent, likewise the consuming side of those determinations.
+  Both triggers fire at the moments Theme #5 fixes, and the chapter claims
+  nothing further for them.
 - **At consequential action** — immediately before an action that is
   irreversible or that crosses an organisational boundary.
 - **At policy change** — when the rules the agent is subject to are
