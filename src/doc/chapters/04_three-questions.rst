@@ -209,6 +209,9 @@ Second, the *default* behaviour when a required attestation is missing must be
 stated per decision point, because silence is currently interpreted
 inconsistently.
 
+**Change continuity across decision points.** The event triggers above produce fresh attestations at each boundary change, but the interval between triggers also matters: an agent's state may change between decision points, and a relying party holding a cached attestation cannot tell whether it still describes the state that is about to act. Three fields therefore belong with every attestation, in addition to the decision point it is satisfied about: (i) the **state version** the attestation is pinned to; (ii) the **changes since the previous attestation** (what changed, when, by whom), where determinable; and (iii) an explicit statement of what was **not evaluated** since the previous trigger - "not checked" must remain distinguishable from "checked and passed". With these fields, a relying party can decide whether a cached attestation is still usable without re-running the verification, and can attribute a stale attestation rather than a malicious agent when the gap is structural.
+
+
 Research Gaps
 -------------
 
