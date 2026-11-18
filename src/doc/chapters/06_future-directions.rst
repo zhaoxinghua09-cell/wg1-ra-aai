@@ -37,8 +37,8 @@ D3. A layered identifier convention
 The distinction between agent type, agent instance, and the authority under
 which an instance acted recurs in every chapter above. A convention that lets a
 relying party cache the first and re-check the second, and that says which one
-a given decision depends on, would remove a recurring source of ambiguity. This
-chapter does not propose such a convention; it records the need for one.
+a given decision depends on, would remove a recurring source of ambiguity. The absence itself is recorded among the standardization gaps of Chapter 04;
+what is added here is the requirement such a convention would have to meet.
 
 D4. Shared vocabulary for freshness and scope
 ---------------------------------------------
@@ -71,7 +71,9 @@ D7. A worked reference profile, applied to one instance of the problem
 
 The abstract questions above become concrete when applied to a single domain
 with an existing obligation to justify decisions. A reference profile
-instantiated against one such domain — stating, for that case, which claims are
+instantiated against one such domain — medical-device regulation, financial-conduct
+supervision, or clinical decision support, for example — stating, for that
+case, which claims are
 required, which failure classes apply, and what the default outcome is — would
 give the group something falsifiable to converge on and would expose
 inconsistencies that abstract discussion does not.
