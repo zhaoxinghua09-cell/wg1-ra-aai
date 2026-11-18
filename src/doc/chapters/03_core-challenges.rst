@@ -26,7 +26,10 @@ strength by one attestation:
 - the **model artefact** actually loaded, where the agent is model-driven;
 - the **runtime state** actually exercised (which may differ from load state);
 - **behaviour observed** during the action (what it did, as distinct from what
-  it was able to do).
+  it was able to do);
+- the **authored policy set** the action is evaluated against — its identity,
+  its version, and the authority under which it was authored — which changes
+  independently of code, model and runtime state.
 
 The difficulty is not that these are hard to attest individually. It
 is that a profile written for one of them does not compose with a profile
@@ -75,8 +78,8 @@ its role in the chain.
 C6. Freshness and replay have no agent-level expression
 -------------------------------------------------------
 
-There is no widely adopted vocabulary for expressing "this evidence is valid
-for this action and no other". Continuous operation makes the problem sharper
+To the author's knowledge, there is no widely adopted vocabulary for expressing
+"this evidence is valid for this action and no other". Continuous operation makes the problem sharper
 than in one-shot attestation: evidence that was correct at one decision point
 remains well-formed at the next, and nothing in its form distinguishes the two
 uses.
@@ -88,8 +91,8 @@ Evidence sufficient to audit an action is usually evidence sufficient to
 profile the principal, the agent, and their relationship. Strengthening the
 evidence improves accountability and worsens disclosure. Resolving this
 requires formats that let a consumer establish a required property without
-receiving the underlying values — a property that most current evidence
-structures do not carry.
+receiving the underlying values — a property that, to the author's knowledge,
+most current evidence structures do not carry.
 
 C8. Heterogeneous evidence has no common minimum
 ------------------------------------------------
