@@ -176,6 +176,25 @@ an empty input, because every assertion it made was vacuously true. Both belong
 to the same class: the check ran, and it reported success while checking
 nothing.
 
+**Container and canonicalisation.** Two consequences of the properties above are
+worth stating, because a profile inherits them whether it addresses them or not.
+
+The first is *canonicalisation*. Any signed structure depends on exactly which
+bytes are signed. The Entity Attestation Token (EAT) is published as RFC 9711
+(April 2025), carried in CBOR, whose canonical encoding is specified in RFC
+8949; a profile that signs a serialisation without fixing a canonical form
+inherits a class of disagreement that a relying party cannot distinguish from
+tampering. This is not specific to agents, and it is repeated here because a
+verdict that cannot be re-derived offline does not satisfy property 3.
+
+The second is that *the token is not the claim*. EAT, and the remote
+attestation roles it assumes (RFC 9334), supply carriage and an evidence
+architecture; they do not supply the vocabulary of authority, decision and
+refusal this chapter asks for. An earlier attempt to add capability claims to
+EAT remained an individual draft - `draft-huang-rats-agentic-eat-cap-attest`,
+last revised 2025-06-13 - which expired without adoption. It is recorded here
+as background only, and is not cited as a normative reference.
+
 When to Attest?
 ---------------
 
@@ -198,6 +217,11 @@ bound attestation:
   irreversible or that crosses an organisational boundary.
 - **At policy change** — when the rules the agent is subject to are
   themselves updated.
+- **At revocation** — when authority is withdrawn, suspended or rolled back.
+  This trigger is the counterpart of *at grant*: what an attestation states at
+  revocation is that the authority no longer binds, not what the agent's state
+  is. Without this trigger, cached evidence silently outlives the grant it
+  rests on.
 
 This aligns attestation with a **decision-point** semantics: the question at
 each trigger is not "is the agent trustworthy in general" but "may *this*
@@ -210,6 +234,19 @@ stated per decision point, because silence is currently interpreted
 inconsistently.
 
 **Change continuity across decision points.** The event triggers above produce fresh attestations at each boundary change, but the interval between triggers also matters: an agent's state may change between decision points, and a relying party holding a cached attestation cannot tell whether it still describes the state that is about to act. Three fields therefore belong with every attestation, in addition to the decision point it is satisfied about: (i) the **state version** the attestation is pinned to; (ii) the **changes since the previous attestation** (what changed, when, by whom), where determinable; and (iii) an explicit statement of what was **not evaluated** since the previous trigger - "not checked" must remain distinguishable from "checked and passed". With these fields, a relying party can decide whether a cached attestation is still usable without re-running the verification, and can attribute a stale attestation rather than a malicious agent when the gap is structural.
+
+**Applicability at use time.** The fields above let a relying party decide
+whether a cached attestation is still usable. Where the subject is unchanged, the
+attestation continues to apply. Where a change occurred, it is the *relevance* of
+that change to the policy set under which the decision is made that matters, not
+the change itself: a policy-relevant change ends the attestation's applicability
+and a fresh one is required; a change the policy set does not care about leaves it
+applicable, and the attestation should say which changes it considered and
+dismissed as irrelevant, so that the judgement is reviewable rather than
+implicit. Where change evidence cannot be obtained at all, the outcome is
+*indeterminate* and the required behaviour should be to escalate rather than to
+pass, because the absence of change evidence is indistinguishable from an
+unreported change.
 
 
 Research Gaps
@@ -254,3 +291,39 @@ Standardization Gaps
   versus "continuously" is treated as an implementation choice, so two
   conforming implementations can produce evidence that is not mutually
   comparable at a decision point.
+- **No format for a negative attestation.** A refusal, a failed check, or the
+  absence of a permission is behaviour a relying party needs to verify as
+  reliably as a pass. Present formats carry positive claims well and negative
+  ones poorly, so "no attestation was issued" and "an attestation was issued
+  and said no" are not distinguishable by shape. Practices exist for logging
+  refusals; a portable format for attesting one does not.
+
+- **No convention for disclosing coverage.** What a set of attestations does
+  *not* cover is left to prose, so completeness tends to be inferred from
+  silence. A profile that states its coverage explicitly - the layers it
+  attests and the layers it leaves out - would let a relying party discount it
+  correctly instead of assuming it is complete.
+
+
+Implementation observation (informative)
+----------------------------------------
+
+One implementation of the three properties has been published openly and is
+recorded here as an observation, not as a recommendation for adoption, and not
+as a claim that it satisfies the chapter.
+
+What it does, in the terms this chapter uses: it pins a baseline by a manifest
+covering several hundred files with a per-file digest, anchored to an external
+commit, which is the layer the chapter calls the platform and artifact layer;
+it runs three negative controls - inputs that must be rejected - so that a pass
+is distinguishable from a check that silently checked nothing; and it publishes a
+crosswalk against an external vocabulary that states, in its own body, one
+partial mapping, fifteen items for which no mapping was found, and four gaps,
+rather than in an appendix.
+
+What it does not do, stated so that the observation can be discounted
+correctly: the test corpus is from a single vendor; there has been no
+third-party interoperability run; there is no formal proof of the properties;
+and continuous integration covers one operating system only. A second
+independent party running the same controls is what would move this from an
+observation to evidence, and that has not happened.
