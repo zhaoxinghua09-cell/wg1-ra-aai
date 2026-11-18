@@ -56,8 +56,8 @@ whether a citation remains checkable over the life of the document.
 First, the reference to Entity Attestation Token above cites the published RFC
 rather than the earlier draft. The draft identifier had been used in the
 chapter skeleton; the published identifier is given here so that the citation
-does not decay. This is consistent with the correction proposed separately in
-this repository.
+does not decay, and so that a reader resolving the reference arrives at the
+published text rather than at an expired draft.
 
 Second, where this document cites a specific claim about a mechanism, the
 citation should resolve to a **stable, independently retrievable** target — a
