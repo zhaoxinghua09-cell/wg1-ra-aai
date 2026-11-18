@@ -157,10 +157,11 @@ able to answer, from the package alone:
 - If verification of any of the above cannot be completed, is the default
   outcome to **deny** the action rather than to allow it?
 
-The last point is where current practice appears weakest. "The check silently
-passed because nothing was actually checked" is a recurring failure mode in
-automated verification generally, and — to the best of the author's knowledge —
-it is not yet enumerated for agent attestation. A catalogue of such cases —
+The last point is where current practice appears weakest. The failure mode is
+the one the problem statement records (see :ref:`chapter-problem-statement`),
+and it is stated there rather than restated here: the check silently passed
+because nothing was actually checked. What this chapter adds is not a second
+statement of the mode but a concrete form for it. A catalogue of such cases —
 verification steps that report success while checking nothing — would be a
 modest but concrete contribution to this chapter, because failure semantics
 cannot be specified before the failure modes are enumerated. Entries in such a
