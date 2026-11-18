@@ -72,7 +72,7 @@ D7. A worked reference profile, applied to one instance of the problem
 The abstract questions above become concrete when applied to a single domain
 with an existing obligation to justify decisions. A reference profile
 instantiated against one such domain — medical-device regulation, financial-conduct
-supervision, or clinical decision support, for example — stating, for that
+supervision, or industrial process control, for example — stating, for that
 case, which claims are
 required, which failure classes apply, and what the default outcome is — would
 give the group something falsifiable to converge on and would expose
