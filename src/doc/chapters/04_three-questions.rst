@@ -29,7 +29,7 @@ strength:
 - **Code and configuration.** The instructions and settings that determine
   what the agent can do, and under which limits.
 
-- **Model and weights.** The model artefact actually loaded, where the agent
+- **Model artefact.** The model artefact actually loaded, where the agent
   is model-driven.
 
 - **Runtime state actually exercised.** The state, context and reachable
@@ -234,7 +234,7 @@ Second, the *default* behaviour when a required attestation is missing must be
 stated per decision point, because silence is currently interpreted
 inconsistently.
 
-**Change continuity across decision points.** The event triggers above produce fresh attestations at each boundary change, but the interval between triggers also matters: an agent's state may change between decision points, and a relying party holding a cached attestation cannot tell whether it still describes the state that is about to act. Three fields therefore belong with every attestation, in addition to the decision point it is satisfied about: (i) the **state version** the attestation is pinned to; (ii) the **changes since the previous attestation** (what changed, when, by whom), where determinable; and (iii) an explicit statement of what was **not evaluated** since the previous trigger - "not checked" must remain distinguishable from "checked and passed". With these fields, a relying party can decide whether a cached attestation is still usable without re-running the verification, and can attribute a stale attestation rather than a malicious agent when the gap is structural.
+**Change continuity across decision points.** The event triggers above produce fresh attestations at each boundary change, but the interval between triggers also matters: an agent's state may change between decision points, and a relying party holding a cached attestation cannot tell whether it still describes the state that is about to act. Three fields therefore belong with every attestation, in addition to the decision point it is satisfied about: (i) the **state version** the attestation is pinned to; (ii) the **changes since the previous attestation** (what changed, when, by whom), where determinable; and (iii) an explicit statement of what was **not evaluated** since the previous trigger - "not checked" must remain distinguishable from "checked and passed". With these fields, a relying party can see what changed and what was not evaluated since the previous attestation, and can attribute a stale attestation rather than a malicious agent when the gap is structural.
 
 **Applicability at use time.** The fields above let a relying party decide
 whether a cached attestation is still usable. Where the subject is unchanged, the
@@ -293,7 +293,8 @@ then be replaced by a reference to it.
   expressed as a convention that a relying party can depend on. This chapter
   does not propose such a convention; it records its absence as a gap.
 
-- **Timing triggers are not standardised.** "At load" versus "per action"
+- **No shared convention fixes attestation timing triggers.** "At load"
+  versus "per action"
   versus "continuously" is treated as an implementation choice, so two
   conforming implementations can produce evidence that is not mutually
   comparable at a decision point.
@@ -303,6 +304,13 @@ then be replaced by a reference to it.
   ones poorly, so "no attestation was issued" and "an attestation was issued
   and said no" are not distinguishable by shape. Practices exist for logging
   refusals; a portable format for attesting one does not.
+
+- **No expression of who signed in what role.** A ledger entry records that a
+  signature is present, not which role its signer held when making the
+  statement. Where a check depends on that role - who may revoke, who may
+  authorise a decision, who may attest on behalf of an institution - the entry
+  does not carry the fact the check needs. Observed while mapping the
+  properties above against existing vocabularies.
 
 - **No convention for disclosing coverage.** What a set of attestations does
   *not* cover is left to prose, so completeness tends to be inferred from
