@@ -158,7 +158,7 @@ able to answer, from the package alone:
   outcome to **deny** the action rather than to allow it?
 
 The last point is where current practice appears weakest. The failure mode is
-the one the problem statement records (see :ref:`chapter-problem-statement`),
+the one recorded in the Problem Statement section of this document,
 and it is stated there rather than restated here: the check silently passed
 because nothing was actually checked. What this chapter adds is not a second
 statement of the mode but a concrete form for it. A catalogue of such cases —
