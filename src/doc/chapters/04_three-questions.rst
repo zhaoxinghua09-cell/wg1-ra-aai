@@ -275,6 +275,11 @@ Research Gaps
 Standardization Gaps
 --------------------
 
+The entries below record absences observed while preparing this chapter. They
+are not the result of an exhaustive survey, and a reader who knows of a
+published convention covering one of them is invited to say so; the entry would
+then be replaced by a reference to it.
+
 - **No common verifier-side checklist.** Each attestation family implies its
   own acceptance procedure, so a relying party facing heterogeneous evidence
   has no shared minimum to apply.
