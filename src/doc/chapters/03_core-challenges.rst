@@ -91,8 +91,8 @@ Evidence sufficient to audit an action is usually evidence sufficient to
 profile the principal, the agent, and their relationship. Strengthening the
 evidence improves accountability and worsens disclosure. Resolving this
 requires formats that let a consumer establish a required property without
-receiving the underlying values — a property that, to the author's knowledge,
-most current evidence structures do not carry.
+receiving the underlying values — a property that the evidence structures reviewed for this chapter
+largely do not carry.
 
 C8. Heterogeneous evidence has no common minimum
 ------------------------------------------------
