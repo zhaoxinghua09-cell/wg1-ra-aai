@@ -89,3 +89,5 @@ Suggested next steps
    terms for which no shared definition yet exists.
 4. Identify, for D5 and D6, which existing mechanisms already satisfy the
    requirement and which do not, so that future work targets the remainder.
+5. Instantiate the reference profile (D7) in one domain once D1 and D2 have
+   taken shape, so that the profile is exercised rather than only described.
